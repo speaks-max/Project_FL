@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
+import os
 import MySQLdb
 import math
 
@@ -46,14 +48,16 @@ def is_strong_password(password):
     return has_upper and has_lower and has_digit and has_special
 # --------------------------------------------------------------------
 
+load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "secret123"
+app.secret_key = os.getenv("SECRET_KEY")
 
 db = MySQLdb.connect(
-    host="localhost",
-    user="root",
-    passwd="5399",
-    db="phonepe_splitwise"
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    passwd=os.getenv("DB_PASSWORD"),
+    db=os.getenv("DB_NAME")
 )
 
 cursor = db.cursor()
