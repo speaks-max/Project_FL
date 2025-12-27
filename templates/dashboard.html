@@ -11,106 +11,87 @@
             margin: 0;
             padding: 0;
         }
-
         .container {
-            width: 90%;
-            max-width: 900px;
+            width: 900px;
             margin: 30px auto;
         }
-
-        h2 {
-            color: #2c3e50;
-        }
-
         .card {
-            background: #ffffff;
+            background: white;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-
-        .balance {
-            font-size: 20px;
-            color: #27ae60;
+        h2 {
+            color: #2c3e50;
+        }
+        a.button {
+            display: inline-block;
+            background: #6c5ce7;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
             font-weight: bold;
         }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        a.button:hover {
+            background: #5a4bdc;
         }
-
-        button {
-            background: #4caf50;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 15px;
-        }
-
-        button:hover {
-            background: #43a047;
-        }
-
-        .section-title {
-            margin-bottom: 10px;
-            color: #34495e;
-        }
-
         .logout {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
             background: #e74c3c;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 4px;
         }
-
         .logout:hover {
             background: #c0392b;
+        }
+        .group {
+            padding: 10px;
+            background: #f1f1f1;
+            margin: 8px 0;
+            border-radius: 5px;
+        }
+        .group a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        .group a:hover {
+            text-decoration: underline;
+        }
+        .empty {
+            color: #7f8c8d;
+            font-style: italic;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
 
-        <div class="card">
-            <h2>Dashboard</h2>
-            <p class="balance">Your Balance: ₹ {{ balance }}</p>
-        </div>
-
-        <div class="card">
-            <h3 class="section-title">Create Group</h3>
-            <form method="post" action="/create_group">
-                <input name="name" placeholder="Group Name" required>
-                <input name="members" placeholder="User ID 1" required>
-                <input name="members" placeholder="User ID 2" required>
-                <button type="submit">Create Group</button>
-            </form>
-        </div>
-
-        <div class="card">
-            <h3 class="section-title">Add Expense</h3>
-            <form method="post" action="/add_expense">
-                <input name="group_id" placeholder="Group ID" required>
-                <input name="desc" placeholder="Description" required>
-                <input name="amount" placeholder="Amount" required>
-                <button type="submit">Add Expense</button>
-            </form>
-        </div>
-
-        <a class="logout" href="/logout">Logout</a>
-
+    <div class="card">
+        <h2>Dashboard</h2>
+        <p>Welcome to your Splitwise</p>
     </div>
+
+    <div class="card">
+        <h3>Your Groups</h3>
+
+        {% if split_group %}
+            {% for g in split_group %}
+                <div class="group">
+                    <a href="/group/{{ g[0] }}">{{ g[0] }}</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="empty">No groups yet. Add your first expense to create one.</p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <a class="button" href="/add_expense_ui">➕ Add Expense</a>
+    </div>
+
+    <a class="button logout" href="/logout">Logout</a>
+
+</div>
 </body>
 </html>

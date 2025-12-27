@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Split Expense</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg,#0f0f0f,#1c1c1c);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 420px;
+    background: #141414;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 26px;
+}
+
+.error {
+    background:#ff4d4d;
+    color:white;
+    padding:12px;
+    border-radius:12px;
+    text-align:center;
+    margin-bottom:18px;
+    font-size:14px;
+}
+
+label {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 15px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    background: #222;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+input::placeholder {
+    color: #777;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+.row > div {
+    flex: 1;
+}
+
+.members {
+    margin-top: 15px;
+    max-height: 140px;
+    overflow-y: auto;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    padding: 8px 6px;
+    border-bottom: 1px solid #222;
+}
+
+.member:last-child {
+    border-bottom: none;
+}
+
+.member input {
+    width: auto;
+    margin-right: 12px;
+    transform: scale(1.3);
+}
+
+button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    background: linear-gradient(135deg,#9b5cff,#b983ff);
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+<div class="card">
+
+<h2>Split Expense</h2>
+
+{% if error %}
+<div class="error">
+    {{ error }}
+</div>
+{% endif %}
+
+<form method="POST" action="/add_expense_v2">
+
+    <label>Group name</label>
+    <input name="group_name" placeholder="Trip, Dinner, Office Party" required>
+
+    <label>Total amount</label>
+    <!-- FINTECH STYLE: Whole rupees only -->
+    <input type="number" name="amount" step="1" min="1" placeholder="₹ Amount" required>
+
+    <label>What is this expense for?</label>
+    <input name="desc" placeholder="Hotel, Food, Travel, etc" required>
+
+    <div class="row">
+        <div>
+            <label>Paid by</label>
+            <select name="paid_by">
+                {% for u in users %}
+                <option value="{{u}}">{{u}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <label>Members</label>
+    <div class="members">
+        {% for u in users %}
+        <div class="member">
+            <input type="checkbox" name="members" value="{{u}}">
+            {{u}}
+        </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Split</button>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>
