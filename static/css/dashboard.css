@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg,#0b1215,#0f1f24);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Container */
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.header h2 {
+    color: #1dd1a1;
+    margin: 0;
+    font-size: 34px;
+}
+.header p {
+    color: #aaa;
+    margin-top: 6px;
+}
+
+/* Cards */
+.card {
+    background: #0f1f24;
+    padding: 22px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    border: 1px solid #1b3a40;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+}
+
+/* Section title */
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #48dbfb;
+}
+
+/* Groups */
+.group {
+    background: #0b1518;
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #1b3a40;
+    transition: 0.2s;
+}
+.group:hover {
+    background: #102a30;
+    transform: scale(1.02);
+}
+.group a {
+    text-decoration: none;
+    color: #1dd1a1;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Empty state */
+.empty {
+    color: #777;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Action buttons */
+.actions {
+    display: flex;
+    gap: 16px;
+}
+.button {
+    flex: 1;
+    padding: 14px;
+    text-align: center;
+    border-radius: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+/* Add Expense */
+.button.add {
+    background: linear-gradient(135deg,#1dd1a1,#48dbfb);
+    color: black;
+    box-shadow: 0 0 20px rgba(72,219,251,0.6);
+}
+.button.add:hover {
+    transform: scale(1.05);
+}
+
+/* Logout */
+.button.logout {
+    background: #ff6b6b;
+    color: black;
+    box-shadow: 0 0 15px rgba(255,107,107,0.6);
+}
+.button.logout:hover {
+    transform: scale(1.05);
+}

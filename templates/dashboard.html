@@ -1,75 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f7;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 900px;
-            margin: 30px auto;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #2c3e50;
-        }
-        a.button {
-            display: inline-block;
-            background: #6c5ce7;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        a.button:hover {
-            background: #5a4bdc;
-        }
-        .logout {
-            background: #e74c3c;
-        }
-        .logout:hover {
-            background: #c0392b;
-        }
-        .group {
-            padding: 10px;
-            background: #f1f1f1;
-            margin: 8px 0;
-            border-radius: 5px;
-        }
-        .group a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-        .group a:hover {
-            text-decoration: underline;
-        }
-        .empty {
-            color: #7f8c8d;
-            font-style: italic;
-        }
-    </style>
+<title>SplitWiseX - Dashboard</title>
+<link rel="stylesheet" href="/static/css/dashboard.css">
 </head>
 
 <body>
+
 <div class="container">
 
-    <div class="card">
-        <h2>Dashboard</h2>
-        <p>Welcome to your Splitwise</p>
+    <div class="header">
+        <h2>SplitWiseX</h2>
+        <p>Your expense dashboard</p>
     </div>
 
     <div class="card">
@@ -77,21 +19,26 @@
 
         {% if split_group %}
             {% for g in split_group %}
-                <div class="group">
-                    <a href="/group/{{ g[0] }}">{{ g[0] }}</a>
-                </div>
+            <div class="group">
+                <a href="/group/{{ g[0] }}">
+                    💸 {{ g[0] }}
+                    <span style="float:right; color:#48dbfb;">
+                        {{ g[1] }}
+                    </span>
+                </a>
+            </div>
             {% endfor %}
         {% else %}
-            <p class="empty">No groups yet. Add your first expense to create one.</p>
+            <div class="empty">No groups yet. Add your first expense to get started.</div>
         {% endif %}
     </div>
 
-    <div class="card">
-        <a class="button" href="/add_expense_ui">➕ Add Expense</a>
+    <div class="card actions">
+        <a class="button add" href="/add_expense_ui">➕ Add Expense</a>
+        <a class="button logout" href="/logout">Logout</a>
     </div>
 
-    <a class="button logout" href="/logout">Logout</a>
-
 </div>
+
 </body>
 </html>

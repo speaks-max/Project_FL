@@ -1,114 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome</title>
-
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background:#f2f4f7;
-    margin:0;
-}
-.box {
-    width:360px;
-    margin:100px auto;
-    background:white;
-    padding:25px;
-    border-radius:8px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-.tabs {
-    display:flex;
-    margin-bottom:15px;
-}
-.tabs div {
-    flex:1;
-    text-align:center;
-    padding:10px;
-    cursor:pointer;
-    background:#eee;
-    border-radius:5px 5px 0 0;
-}
-.tabs .active {
-    background:#6c5ce7;
-    color:white;
-}
-form {
-    display:none;
-}
-form.active {
-    display:block;
-}
-input {
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border-radius:4px;
-    border:1px solid #ccc;
-}
-button {
-    width:100%;
-    padding:10px;
-    margin-top:15px;
-    background:#6c5ce7;
-    border:none;
-    color:white;
-    border-radius:4px;
-    cursor:pointer;
-    font-size:15px;
-}
-button:hover {
-    background:#5a4bdc;
-}
-.error {
-    color:red;
-    text-align:center;
-    margin-bottom:10px;
-}
-</style>
+<title>SplitWiseX</title>
+<link rel="stylesheet" href="/static/css/auth.css">
 </head>
 
 <body>
+
 <div class="box">
 
-<div class="tabs">
-    <div id="loginTab" class="active" onclick="showLogin()">Login</div>
-    <div id="regTab" onclick="showRegister()">Register</div>
+    <div class="logo">SplitWiseX</div>
+    <div class="tagline">Track. Split. Settle — without awkwardness.</div>
+
+    <div class="tabs">
+        <div id="loginTab" class="active" onclick="showLogin()">Login</div>
+        <div id="regTab" onclick="showRegister()">Register</div>
+    </div>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+    {% if success %}
+      <div class="success">{{ success }}</div>
+    {% endif %}
+
+    <!-- LOGIN -->
+    <form id="loginForm" class="active" method="POST" action="/login">
+        <input name="mobile" placeholder="📱 Mobile number" required>
+        <input type="password" name="password" placeholder="🔒 Password" required>
+        <button>Login</button>
+    </form>
+
+    <!-- REGISTER -->
+    <form id="regForm" method="POST" action="/register">
+        <input name="name" placeholder="👤 Full name" required>
+        <input name="mobile" placeholder="📱 Mobile number" required>
+        <input type="password" name="password" placeholder="🔒 Password" required>
+        <button>Create Account</button>
+    </form>
+
 </div>
 
-{% if error %}
-<div class="error">{{ error }}</div>
-{% endif %}
-
-<form id="loginForm" class="active" method="POST" action="/login">
-    <input name="mobile" placeholder="Mobile number" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button>Login</button>
-</form>
-
-<form id="regForm" method="POST" action="/register">
-    <input name="name" placeholder="Full name" required>
-    <input name="mobile" placeholder="Mobile number" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button>Register</button>
-</form>
-
-</div>
-
-<script>
-function showLogin(){
-    loginForm.classList.add("active");
-    regForm.classList.remove("active");
-    loginTab.classList.add("active");
-    regTab.classList.remove("active");
-}
-function showRegister(){
-    regForm.classList.add("active");
-    loginForm.classList.remove("active");
-    regTab.classList.add("active");
-    loginTab.classList.remove("active");
-}
-</script>
-
+<script src="/static/js/auth.js"></script>
 </body>
 </html>

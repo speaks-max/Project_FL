@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg,#0b1215,#0f1f24);
+    color: white;
+    min-height: 100vh;
+}
+
+/* Page container */
+.page {
+    width: 1000px;
+    margin: 40px auto;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.logo {
+    font-size: 34px;
+    font-weight: 700;
+    color:#1dd1a1;
+}
+.tagline {
+    color:#aaa;
+    font-size:14px;
+}
+
+/* Main layout */
+.split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Cards */
+.card {
+    background:#0f1f24;
+    border-radius:20px;
+    padding:28px;
+    border:1px solid #1b3a40;
+    box-shadow:0 0 40px rgba(0,0,0,.7);
+}
+
+.card h3 {
+    color:#48dbfb;
+    margin-bottom:20px;
+}
+
+/* Inputs */
+label {
+    font-size:13px;
+    color:#aaa;
+    display:block;
+    margin-top:14px;
+}
+
+input, select {
+    width:100%;
+    padding:14px;
+    margin-top:8px;
+    background:#0b1518;
+    border:1px solid #1b3a40;
+    border-radius:14px;
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus, select:focus {
+    border-color:#48dbfb;
+    box-shadow:0 0 12px rgba(72,219,251,.6);
+}
+
+/* Members */
+.search-box {
+    width:100%;
+    padding:14px;
+    background:#0b1518;
+    border:1px solid #1b3a40;
+    border-radius:14px;
+    color:white;
+    font-size:15px;
+    margin-bottom:12px;
+}
+
+/* Members list */
+.member-list {
+    max-height:220px;
+    overflow-y:auto;
+    border:1px solid #1b3a40;
+    border-radius:14px;
+    background:#0b1518;
+}
+
+.member-row {
+    padding:12px;
+    cursor:pointer;
+    border-bottom:1px solid #1b3a40;
+}
+.member-row:hover {
+    background:#14262c;
+}
+.member-row:last-child {
+    border-bottom:none;
+}
+
+/* Selected members */
+.selected {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.chip {
+    background:linear-gradient(135deg,#1dd1a1,#48dbfb);
+    color:black;
+    padding:8px 14px;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:13px;
+    cursor:pointer;
+}
+
+/* Button */
+button {
+    width:100%;
+    padding:16px;
+    margin-top:30px;
+    background:linear-gradient(135deg,#1dd1a1,#48dbfb);
+    border:none;
+    border-radius:18px;
+    font-size:17px;
+    font-weight:bold;
+    color:black;
+    cursor:pointer;
+    box-shadow:0 0 30px rgba(72,219,251,.7);
+}
+button:hover {
+    transform:scale(1.02);
+}

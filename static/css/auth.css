@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    margin:0;
+    height:100vh;
+    background: linear-gradient(135deg,#0b1215,#0f1f24);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* Main box */
+.box {
+    width: 400px;
+    background:#0f1f24;
+    padding: 38px 32px;
+    border-radius: 22px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    border: 1px solid #1b3a40;
+}
+
+/* Logo */
+.logo {
+    text-align:center;
+    font-size:32px;
+    font-weight:700;
+    color:#1dd1a1;
+    letter-spacing:1px;
+}
+
+.tagline {
+    text-align:center;
+    color:#aaa;
+    font-size:13px;
+    margin:8px 0 28px;
+}
+
+/* Tabs */
+.tabs {
+    display:flex;
+    background:#0b1518;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid #1b3a40;
+    margin-bottom:25px;
+}
+
+.tabs div {
+    flex:1;
+    text-align:center;
+    padding:14px;
+    cursor:pointer;
+    font-weight:600;
+    color:#aaa;
+    transition:.2s;
+}
+
+.tabs .active {
+    background:linear-gradient(135deg,#1dd1a1,#48dbfb);
+    color:black;
+}
+
+/* Forms */
+form {
+    display:none;
+}
+form.active {
+    display:block;
+}
+
+/* Inputs */
+input {
+    width:100%;
+    padding:14px 16px;
+    margin-top:14px;
+    background:#0b1518;
+    border:1px solid #1b3a40;
+    border-radius:14px;
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:.2s;
+}
+
+input::placeholder {
+    color:#777;
+}
+
+input:focus {
+    border-color:#48dbfb;
+    box-shadow:0 0 12px rgba(72,219,251,.5);
+    background:#0f1f24;
+}
+
+/* Button */
+button {
+    width:100%;
+    margin-top:26px;
+    padding:14px;
+    background:linear-gradient(135deg,#1dd1a1,#48dbfb);
+    border:none;
+    border-radius:16px;
+    font-size:16px;
+    font-weight:bold;
+    color:black;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(72,219,251,.6);
+    transition:.2s;
+}
+
+button:hover {
+    transform:scale(1.03);
+    box-shadow:0 0 40px rgba(72,219,251,.9);
+}
+
+/* Error */
+.error {
+    background:#ff6b6b;
+    color:black;
+    padding:14px;
+    border-radius:14px;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:14px;
+}

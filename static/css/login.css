@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg,#0b1215,#0f1f24);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+.card {
+    width: 380px;
+    background: #0f1f24;
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    color: white;
+    border: 1px solid #1b3a40;
+}
+
+/* Logo */
+.logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #1dd1a1;
+}
+
+.tagline {
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 6px;
+    margin-bottom: 30px;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #48dbfb;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-top: 14px;
+    background: #0b1518;
+    border: 1px solid #1b3a40;
+    border-radius: 14px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input::placeholder {
+    color: #777;
+}
+
+input:focus {
+    border-color: #48dbfb;
+    box-shadow: 0 0 12px rgba(72,219,251,0.5);
+    background:#0f1f24;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 24px;
+    background: linear-gradient(135deg,#1dd1a1,#48dbfb);
+    border: none;
+    border-radius: 16px;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(72,219,251,0.6);
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 40px rgba(72,219,251,0.9);
+}
+
+/* Error */
+.error {
+    background:#ff6b6b;
+    color:black;
+    padding:14px;
+    border-radius:14px;
+    margin-bottom:18px;
+    text-align:center;
+    font-size:14px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+    color: #aaa;
+}
+
+.footer a {
+    color: #48dbfb;
+    text-decoration: none;
+    font-weight: bold;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
