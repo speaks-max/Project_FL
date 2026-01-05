@@ -1,45 +1,54 @@
-"""create database phonepe_splitwise;
-use phonepe_splitwise;  -- group --> split_group
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50),
-    mobile VARCHAR(10) UNIQUE,
+"""CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    mobile VARCHAR(10) UNIQUE NOT NULL,
     password VARCHAR(255),
     role ENUM('admin','user') DEFAULT 'user'
 );
-CREATE TABLE split_group (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50),
-    created_by INT,
-    FOREIGN KEY (created_by) REFERENCES users(id)
+
+CREATE TABLE split_groups (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) UNIQUE NOT NULL,
+    closed TINYINT(1) DEFAULT 0
 );
-CREATE TABLE group_members (
-    group_id INT,
-    user_id INT,
+
+CREATE TABLE split_group_members (
+    group_id INT NOT NULL,
+    user_id INT NOT NULL,
     PRIMARY KEY (group_id, user_id),
-    FOREIGN KEY (group_id) REFERENCES split_group(id),
+    FOREIGN KEY (group_id) REFERENCES split_groups(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-CREATE TABLE expenses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    group_id INT,
-    description VARCHAR(100),
-    total_amount DECIMAL(10,2),
-    paid_by INT,
-    FOREIGN KEY (group_id) REFERENCES split_group(id),
-    FOREIGN KEY (paid_by) REFERENCES users(id)
+
+CREATE TABLE split_expenses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    group_id INT NOT NULL,
+    paid_by_id INT NOT NULL,  -- user_id
+    description VARCHAR(200),
+    total_paise BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (group_id) REFERENCES split_groups(id),
+    FOREIGN KEY (paid_by_id) REFERENCES users(id)
 );
-CREATE TABLE expense_splits (
-    expense_id INT,
-    user_id INT,
-    share_amount DECIMAL(10,2),
-    paid_amount DECIMAL(10,2),
-    balance DECIMAL(10,2),
-    FOREIGN KEY (expense_id) REFERENCES expenses(id),
+
+CREATE TABLE split_shares (
+    expense_id INT NOT NULL,
+    user_id INT NOT NULL,
+    share_paise BIGINT NOT NULL,
+    PRIMARY KEY (expense_id, user_id),
+    FOREIGN KEY (expense_id) REFERENCES split_expenses(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-select * from users;
-select * from split_group;
-select * from group_members;
-select * from expenses;
-select * from expense_splits;"""
+
+CREATE TABLE settlements (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    group_id INT NOT NULL,
+    payer_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    amount_paise BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (group_id) REFERENCES split_groups(id),
+    FOREIGN KEY (payer_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id)
+);
+"""
