@@ -1,5 +1,3 @@
-print("NEW BALANCE ENGINE ACTIVE")
-
 from flask import Blueprint, render_template
 from db import cursor
 from services.settlement import get_settlements, get_user_net, get_payment_history

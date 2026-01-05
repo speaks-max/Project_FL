@@ -36,13 +36,13 @@ def settle():
 
     # payer must owe, receiver must be owed
     if payer_net >= 0 or receiver_net <= 0:
-        print("❌ Invalid payer/receiver")
+        print("Invalid payer/receiver")
         return redirect(f"/group/{group}")
 
     max_payable = min(-payer_net, receiver_net)
 
     if amount_paise > max_payable:
-        print("❌ Overpay blocked")
+        print("Overpay blocked")
         return redirect(f"/group/{group}")
 
     # record payment
